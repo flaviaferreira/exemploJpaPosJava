@@ -21,6 +21,14 @@ public class Garagem {
 	@JoinColumn(name = "EMP_ID")
 	private Empregado empregado;
 	
+	public Garagem() {
+	}
+	
+	public Garagem(long numero, String localizacao) {
+		this.numero = numero;
+		this.localizacao = localizacao;
+	}
+	
 	public Long getId() {
 		return id;
 	}

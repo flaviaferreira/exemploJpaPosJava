@@ -20,6 +20,13 @@ public class Projeto {
 	
 	@ManyToMany(mappedBy = "projetos")
 	private Collection<Empregado> empregados;
+	
+	public Projeto() {
+	}
+	
+	public Projeto(String nome) {
+		this.nome = nome;
+	}
 
 	public Long getId() {
 		return id;

@@ -21,6 +21,13 @@ public class Departamento {
 	@OneToMany(mappedBy = "departamento")
 	private Collection<Empregado> empregados;
 	
+	public Departamento() {
+	}
+	
+	public Departamento(String nome) {
+		this.nome = nome;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +42,14 @@ public class Departamento {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Collection<Empregado> getEmpregados() {
+		return empregados;
+	}
+
+	public void setEmpregados(Collection<Empregado> empregados) {
+		this.empregados = empregados;
 	}
 	
 }

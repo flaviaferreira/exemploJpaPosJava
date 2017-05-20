@@ -1,5 +1,6 @@
 package posjava.persistence.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -47,6 +48,27 @@ public class Empregado {
 	@OneToOne
 	@JoinColumn(name = "GRG_ID")
 	private Garagem garagem;
+	
+	public Empregado() {
+	}
+	
+	public Empregado(String nome, long salario) {
+		this.nome = nome;
+		this.salario = salario;
+	}
+	
+	public Empregado(String nome, long salario, Departamento dep) {
+		this.nome = nome;
+		this.salario = salario;
+		this.departamento = dep;
+	}
+	
+	public Empregado(String nome, long salario, Departamento dep, Garagem garagem) {
+		this.nome = nome;
+		this.salario = salario;
+		this.departamento = dep;
+		this.garagem = garagem;
+	}
 
 	public long getId() {
 		return Id;
@@ -102,6 +124,14 @@ public class Empregado {
 
 	public void setProjetos(Collection<Projeto> projetos) {
 		this.projetos = projetos;
+	}
+	
+	public Empregado addProjeto(Projeto projeto) {
+		if(projetos == null) {
+			projetos = new ArrayList<Projeto>();
+		}
+		projetos.add(projeto);
+		return this;
 	}
 	
 }

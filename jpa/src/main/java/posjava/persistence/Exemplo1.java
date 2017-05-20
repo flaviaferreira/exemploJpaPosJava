@@ -46,7 +46,7 @@ public class Exemplo1 {
 
         Query buscaTodo1 = em.createQuery("from Todo t");
 
-        List< Todo > todos1 = buscaTodo1.getResultList();
+		List< Todo > todos1 = buscaTodo1.getResultList();
         todos1.forEach(System.out::println);
 
         Todo todoX = em.find(Todo.class, 1l);
@@ -62,7 +62,7 @@ public class Exemplo1 {
         
         tx3.commit();
         
-        List< Todo > todos2 = buscaTodo1.getResultList();
+		List< Todo > todos2 = buscaTodo1.getResultList();
         todos2.forEach(System.out::println);
         
         //exemplo utilizando acesso misto
@@ -81,7 +81,7 @@ public class Exemplo1 {
         tx4.commit();
         
         Query buscaEmpMix = em.createQuery("select e from EmpregadoMixedAccess e");
-        List<EmpregadoMixedAccess> empMixs = buscaEmpMix.getResultList();
+		List<EmpregadoMixedAccess> empMixs = buscaEmpMix.getResultList();
         
         empMixs.forEach(e -> {
         	System.out.println(String.format("ID %3d, Telefone %11s", e.getId(), e.getTelefone()));
