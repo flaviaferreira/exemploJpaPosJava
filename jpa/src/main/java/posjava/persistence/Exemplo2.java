@@ -1,6 +1,8 @@
 package posjava.persistence;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -50,6 +52,7 @@ public class Exemplo2 {
         atribuirDepartamentoParaEmpregado(em, empregadosList, departamentos);
         
         //adicionar cada empregado a um projeto
+        atribuirProjetosParaEmpregado(em, empregadosList, projetos);
         
         exAssocia.commit();
         
@@ -99,11 +102,17 @@ public class Exemplo2 {
 		return departamento;
 	}
 	
-	private static Projeto retornaProjetoPorNome(String nome, EntityManager em) {		
-		Query buscaProjeto = em.createQuery("from Projeto p where p.nome = :nome")
-        		.setParameter("nome", nome);
+	private static Collection<Projeto> retornaProjetoPorNome(List<String> nome, EntityManager em) {	
+		String nomeProjeto = "";
+		for(String n : nome) {
+			nomeProjeto += ", '" + n + "'";
+		};
 		
-		Projeto projeto = (Projeto) buscaProjeto.getSingleResult();
+		nomeProjeto = nomeProjeto.substring(1, nomeProjeto.length());
+		
+		Query buscaProjeto = em.createQuery("from Projeto p where p.nome in (" + nomeProjeto + ")");
+		
+		Collection<Projeto> projeto = (Collection<Projeto>) buscaProjeto.getResultList();
 		return projeto;
 	}
 	
@@ -118,6 +127,18 @@ public class Exemplo2 {
 		Random r = new Random();
         empregadosList.forEach(empregado -> {
         	empregado.setDepartamento(retornaDepartamentoPorNome(departamentos.get(r.nextInt(departamentos.size())), em));
+        	em.persist(empregado);
+        });
+	}
+	
+	private static void atribuirProjetosParaEmpregado(EntityManager em, List<Empregado> empregadosList, List<String> projetos) {
+		Random r = new Random();
+		empregadosList.forEach(empregado -> {
+			List<String> projs = new ArrayList<>();
+			for(int i = 0; i < 3; i ++) {
+				projs.add(projetos.get(r.nextInt(projetos.size())));
+			}
+        	empregado.setProjetos(retornaProjetoPorNome(projs, em));
         	em.persist(empregado);
         });
 	}
