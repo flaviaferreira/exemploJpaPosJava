@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import posjava.persistence.entities.Empregado;
 import posjava.persistence.entities.Garagem;
 
 public class Exemplo2 {
@@ -17,7 +18,11 @@ public class Exemplo2 {
         EntityTransaction tx1 = em.getTransaction();
         tx1.begin();
         
+        Empregado empregado1 = new Empregado();
+        em.persist(empregado1);
+        
         Garagem garagem1 = new Garagem();
+        garagem1.setEmpregado(empregado1);
         em.persist(garagem1);
         
         Garagem garagem2 = new Garagem();

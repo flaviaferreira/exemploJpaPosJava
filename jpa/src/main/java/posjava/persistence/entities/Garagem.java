@@ -44,5 +44,13 @@ public class Garagem {
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
+
+	public Empregado getEmpregado() {
+		return empregado;
+	}
+
+	public void setEmpregado(Empregado empregado) {
+		this.empregado = empregado;
+	}
 	
 }
