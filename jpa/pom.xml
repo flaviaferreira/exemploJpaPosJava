@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pos.java</groupId>
-	<artifactId>jpa</artifactId>
+	<groupId>pos.java.persistence.jpa</groupId>
+	<artifactId>unicesumar2017PosJavaJPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Unicesumar 2017 Pos Java JPA</name>
 	<description>Exemplos utilizados na aula de persistencia com JPA ministradas 13 e 20 Maio 2017</description>
